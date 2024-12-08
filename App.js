@@ -1,8 +1,8 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import {StatusBar} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import FlashMessage from 'react-native-flash-message';
 
 // Sayfalar ve bileşenler
@@ -11,8 +11,9 @@ import SignPage from './pages/SignPage';
 import RoomsPage from './pages/RoomsPage';
 import ProfilePage from './pages/ProfilePage';
 import Icon from './components/Icon';
-import { colors } from './style/colors';
-import AuthProvider, { useAuthContext } from './context/AuthContext'; // AuthContext'ten kullanıcı bilgisi alıyoruz
+import {colors} from './style/colors';
+import AuthProvider, {useAuthContext} from './context/AuthContext'; // AuthContext'ten kullanıcı bilgisi alıyoruz
+import RoomDetailPage from './pages/RoomDetailPage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -24,14 +25,17 @@ function AppTabs() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-      }}
-    >
+      }}>
       <Tab.Screen
         name="RoomsPage"
-        component={RoomsPage}
+        component={RoomsNavigator}
         options={{
           tabBarIcon: () => (
-            <Icon iconName="comment" iconColor={colors.mainOrange} iconSize={20} />
+            <Icon
+              iconName="comment"
+              iconColor={colors.mainOrange}
+              iconSize={20}
+            />
           ),
         }}
       />
@@ -48,10 +52,18 @@ function AppTabs() {
   );
 }
 
+function RoomsNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="RoomsPage" component={RoomsPage} />
+      <Stack.Screen name="RoomDetailPage" component={RoomDetailPage} />
+    </Stack.Navigator>
+  );
+}
 // Giriş yapılmamış kullanıcılar için StackNavigator
 function AuthStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="LoginPage" component={LoginPage} />
       <Stack.Screen name="SignPage" component={SignPage} />
     </Stack.Navigator>
@@ -62,7 +74,7 @@ function AuthStack() {
 export default function App() {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="default" />
       <AuthProvider>
         <NavigationContainer>
           <AuthOrApp />
@@ -75,6 +87,6 @@ export default function App() {
 
 // AuthProvider içinde kullanıcıyı kontrol eden bir bileşen oluşturuyoruz
 function AuthOrApp() {
-  const {user} = useAuthContext();  // AuthContext'ten kullanıcı bilgilerini alıyoruz
-  return user ? <AppTabs /> : <AuthStack />;  // Kullanıcıya göre uygun navigatörü render ediyoruz
+  const {user} = useAuthContext(); // AuthContext'ten kullanıcı bilgilerini alıyoruz
+  return user ? <AppTabs /> : <AuthStack />; // Kullanıcıya göre uygun navigatörü render ediyoruz
 }

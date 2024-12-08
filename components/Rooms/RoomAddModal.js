@@ -5,14 +5,14 @@ import Button from '../Button';
 import {colors} from '../../style/colors';
 
 export default function RoomAddModal({onClose, visible, onSend}) {
-  const [roomInfo, senRoomInfo] = useState({roomName: '', roomPassword: ''});
+  const [roomInfo, setRoomInfo] = useState({roomName: '', roomPassword: ''});
 
   function handleSend() {
     if (!roomInfo.roomName || !roomInfo.roomPassword) {
       return; // Eğer başlık veya içerik boşsa, geri dön.
     }
     onSend(roomInfo);
-    senRoomInfo({roomName: '', roomPassword: ''}); // State'i sıfırla
+    setRoomInfo({roomName: '', roomPassword: ''}); // State'i sıfırla
   }
 
   return (
@@ -26,8 +26,17 @@ export default function RoomAddModal({onClose, visible, onSend}) {
       <View style={styles.container}>
         <View style={styles.inputContainer}>
           <Text style={styles.title}>Yeni Bir Sohbet Odası Oluştur</Text>
-          <TextInput style={styles.input} placeholder="Oda Adı Girin" />
           <TextInput
+            style={styles.input}
+            placeholder="Oda Adı Girin"
+            onChangeText={value => setRoomInfo({...roomInfo, roomName: value})}
+            value={roomInfo.roomName}
+          />
+          <TextInput
+            onChangeText={value =>
+              setRoomInfo({...roomInfo, roomPassword: value})
+            }
+            value={roomInfo.roomPassword}
             style={styles.input}
             placeholder="Odaya Özel Bir Şifre Belirleyin"
             secureTextEntry // Şifre girişi olduğunu belirtiyoruz
