@@ -3,16 +3,22 @@ import React, {useState} from 'react';
 import Modal from 'react-native-modal';
 import Button from '../Button';
 import {colors} from '../../style/colors';
+import {useAuthContext} from '../../context/AuthContext';
 
 export default function RoomAddModal({onClose, visible, onSend}) {
-  const [roomInfo, setRoomInfo] = useState({roomName: '', roomPassword: ''});
+  const {user} = useAuthContext();
+  const [roomInfo, setRoomInfo] = useState({
+    roomName: '',
+    roomPassword: '',
+    createdUserId: user.uid,
+  });
 
   function handleSend() {
     if (!roomInfo.roomName || !roomInfo.roomPassword) {
       return; // Eğer başlık veya içerik boşsa, geri dön.
     }
     onSend(roomInfo);
-    setRoomInfo({roomName: '', roomPassword: ''}); // State'i sıfırla
+    setRoomInfo({roomName: '', roomPassword: '', createdUserId: user.uid});
   }
 
   return (

@@ -18,7 +18,7 @@ export default function LoginPage({navigation}) {
         message: 'Giriş Başarılı',
         type: 'success',
       });
-      navigation.navigate('AppTabs', { screen: 'RoomsPage' });
+      navigation.navigate('RoomsPage');
     } catch (error) {
       console.log(error.code);
     }
@@ -58,7 +58,7 @@ export default function LoginPage({navigation}) {
         iconColor={colors.mainOrange}
         iconSize={24}
         loading={false}
-        onPress={() => navigation.navigate('Sign')}
+        onPress={() => navigation.navigate('SignPage')}
       />
     </View>
   );

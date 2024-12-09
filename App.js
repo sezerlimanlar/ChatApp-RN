@@ -27,7 +27,7 @@ function AppTabs() {
         tabBarShowLabel: false,
       }}>
       <Tab.Screen
-        name="RoomsPage"
+        name="RoomsNavigator"
         component={RoomsNavigator}
         options={{
           tabBarIcon: () => (
@@ -54,7 +54,7 @@ function AppTabs() {
 
 function RoomsNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}} >
       <Stack.Screen name="RoomsPage" component={RoomsPage} />
       <Stack.Screen name="RoomDetailPage" component={RoomDetailPage} />
     </Stack.Navigator>
@@ -76,9 +76,9 @@ export default function App() {
     <>
       <StatusBar barStyle="default" />
       <AuthProvider>
-        <NavigationContainer>
+        <NavigationContainer >
           <AuthOrApp />
-          <FlashMessage position="center" />
+          <FlashMessage position="bottom" />
         </NavigationContainer>
       </AuthProvider>
     </>

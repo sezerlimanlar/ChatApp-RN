@@ -12,8 +12,7 @@ export default function ProfilePage({navigation}) {
         message: 'Çıkış Yapıldı',
         type: 'success',
       });
-      navigation.navigate('AuthStack', { screen: 'LoginPage' });
-
+      navigation.navigate('LoginPage');
     } catch (error) {
       showMessage({
         message: 'Çıkış Yaparken Bir Sorunla Karşılaşıldı',

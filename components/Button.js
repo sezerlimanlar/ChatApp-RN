@@ -73,6 +73,21 @@ const styles = StyleSheet.create({
       bottom: 20,
     },
   },
+  messageSendBtn: {
+    ...base_style,
+    container: {
+      ...base_style.container,
+      borderWidth: 1,
+      paddingVertical: 10,
+      borderColor: "darkgray",
+      paddingHorizontal: 10,
+      borderRadius: 20,
+      marginLeft:5,
+    },
+    btnText: {
+      color: colors.mainOrange,
+    },
+  },
   quaternary: {
     ...base_style,
   },

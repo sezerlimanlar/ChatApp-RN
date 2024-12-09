@@ -23,7 +23,6 @@ export default function AuthProvider({children}) {
 // useAuthContext: Context üzerinden kullanıcı verisini almak için custom hook
 const useAuthContext = () => {
   const context = useContext(AuthContext); // Context'ten kullanıcı bilgilerini alır
-  console.log(context);
   if (context === undefined)
     throw new Error('Context was used outside of AuthProvider');
 

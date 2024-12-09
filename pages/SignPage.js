@@ -25,7 +25,8 @@ export default function SignPage({navigation}) {
         message: 'KAYIT BAŞARILI',
         type: 'success',
       });
-      navigation.navigate('AuthStack', { screen: 'LoginPage' });
+      
+      navigation.navigate('LoginPage');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         showMessage({
