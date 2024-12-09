@@ -1,3 +1,6 @@
+# Bu mobil sohbet odası uygulaması, React Native ve Firebase kullanılarak geliştirilmiştir. Kullanıcılara anlık iletişim ve sohbet odası oluşturma imkanı sunar. Kullanıcılar, özel isim ve şifre ile sohbet odaları oluşturabilir, böylece gizlilik sağlanır. Firebase, mesajların ve oda bilgilerin gerçek zamanlı olarak senkronize edilmesini sağlar. Ayrıca, şifre korumalı odalar sayesinde yalnızca yetkili kullanıcılar sohbet odalarına erişebilir
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
